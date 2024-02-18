@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vibrating Heart Animation</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&display=swap');
+    body, html {
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+        text-align: center;
+        background-image: url("bg.avif");
+        background-repeat: no-repeat;
+        overflow: hidden;
+        background-size: cover;
+    }
+
+    .message{
+        margin-top: 10vh;
+        font-size: 4vh;
+        color: rgb(241, 6, 6);
+        text-shadow: 1px 2px 2px rgb(40, 40, 40);
+        font-family: 'Libre Baskerville';
+        opacity: 0; /* Initially hidden */
+        animation: fade-in 3s forwards; /* Apply fade-in animation */
+    }
+
+    @keyframes fade-in {
+        from {
+            opacity: 0; /* Start from fully transparent */
+        }
+        to {
+            opacity: 1; /* Fade in to fully visible */
+        }
+    }
+
+    .heart {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 15vw; /* Adjusted for mobile */
+        height: 13.5vw; /* Adjusted for mobile */
+    }
+
+    .heart::before,
+    .heart::after {
+        position: absolute;
+        content: "";
+        left: 15vw; /* Adjusted for mobile */
+        top: 0;
+        width: 15vw; /* Adjusted for mobile */
+        height: 26vw; /* Adjusted for mobile */
+        background-color: red;
+        border-radius: 7.5vw 7.5vw 0 0; /* Adjusted for mobile */
+        transform: rotate(-45deg);
+        transform-origin: 0 100%;
+    }
+
+    .heart::after {
+        left: 0;
+        transform: rotate(45deg);
+        transform-origin: 100% 100%;
+    }
+
+    @keyframes pulse {
+        0% {
+            transform: translate(-50%, -50%) scale(0.95);
+        }
+        70% {
+            transform: translate(-50%, -50%) scale(1);
+        }
+        100% {
+            transform: translate(-50%, -50%) scale(0.95);
+        }
+    }
+
+    .vibrate {
+        animation: pulse 1s infinite;
+    }
+
+    .btn {
+        position: absolute;
+        bottom: 5vh; /* Adjusted for mobile */
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 2vh 4vw; /* Adjusted for mobile */
+        font-size: 4vh; /* Adjusted for mobile */
+        cursor: pointer;
+        background-color: #ff4081;
+        color: white;
+        border: none;
+        border-radius: 2vh; /* Adjusted for mobile */
+        transition: background-color 0.3s;
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: bold;
+        text-shadow: 1px 2px 2px rgb(40, 40, 40);
+        box-shadow: 1px 2px 5px black;
+    }
+    .btn span{
+        font-size: 2vh; /* Adjusted for mobile */
+        font-weight: normal;
+    }
+
+    .btn:hover {
+        background-color: #d81b60;
+    }
+</style>
+</head>
+<body>
+    <div class="message" id="msg">
+        I am missing you so much,<br>Sweta Baby🥲🫂</div>
+    <div class="heart vibrate"></div>
+
+    <button class="btn" onclick="toggleLoveAudio()">I SAID <br><span>(click me)</span></button>
+
+    <script>
+        let loveAudio = new Audio('love.mp3');
+
+        function toggleLoveAudio() {
+            if (loveAudio.paused) {
+                loveAudio.play();
+            } else {
+                loveAudio.pause();
+                loveAudio.currentTime = 0;
+                loveAudio.play();
+            }
+        }
+    </script>
+</body>
+</html>
